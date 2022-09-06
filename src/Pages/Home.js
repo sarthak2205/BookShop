@@ -4,20 +4,28 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [books, setBooks] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [booksPerPage, setBooksPerPage] = useState(10);
+
+    
+    const indexOfLastBook = currentPage * booksPerPage;
+    const indexOfFirstBook = indexOfLastBook - booksPerPage;
+    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
     const loadBooks = () => {
         axios.get("http://localhost:3003/books").then((res) => {
                 setBooks(res.data.reverse());
             });
         }
-
+ 
     useEffect(() => {
         loadBooks();
-    }, [books]);
+    }, [currentBooks]);
 
     function Delete(id){
         axios.delete(`http://localhost:3003/books/${id}`).then(loadBooks())
     }
+
 
   return (
     <div className='w-full h-full flex flex-col px-10 py-8'>
@@ -46,7 +54,7 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {books.map((data, index)=>(
+                        {currentBooks.map((data, index)=>(
                         <tr key={index} className="bg-gray-100 border-b ">
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index+1}</td>
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
