@@ -18,14 +18,6 @@ export default function Home() {
         }        
     };
 
-    const Next = (currentPage) => {
-        //if(pageNumber){
-         //   setCurrentPage(Math.ceil(pageNumber+1));
-        //} 
-        setCurrentPage(currentPage+1);
-        console.log(setCurrentPage);       
-    };
-
     const loadBooks = () => {
         axios.get("http://localhost:3003/books").then((res) => {
                 setBooks(res.data.reverse());
@@ -86,11 +78,10 @@ export default function Home() {
                             </td>
                         </tr>
                         ))}
-                        
                     </tbody>
                     </table>
                     <div className="flex justify-center">
-                        <Pagination booksPerPage={booksPerPage} totalBooks={books.length} paginate={paginate} Next={Next}/>
+                        <Pagination booksPerPage={booksPerPage} totalBooks={books.length} paginate={paginate} />
                     </div>
         </div>
     </div>
