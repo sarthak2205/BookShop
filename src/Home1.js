@@ -6,25 +6,12 @@ import { Link } from 'react-router-dom';
 export default function Home() {
     const [books, setBooks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage] = useState(10);
+    const [booksPerPage, setBooksPerPage] = useState(10);
 
     
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
-    const paginate = (pageNumber) => {
-        if(pageNumber){
-            setCurrentPage(pageNumber);
-        }        
-    };
-
-    const Next = (currentPage) => {
-        //if(pageNumber){
-         //   setCurrentPage(Math.ceil(pageNumber+1));
-        //} 
-        setCurrentPage(currentPage+1);
-        console.log(setCurrentPage);       
-    };
 
     const loadBooks = () => {
         axios.get("http://localhost:3003/books").then((res) => {
@@ -39,6 +26,7 @@ export default function Home() {
     function Delete(id){
         axios.delete(`http://localhost:3003/books/${id}`).then(loadBooks())
     }
+
 
   return (
     <div className='w-full h-full flex flex-col px-10 py-8'>
@@ -90,7 +78,25 @@ export default function Home() {
                     </tbody>
                     </table>
                     <div className="flex justify-center">
-                        <Pagination booksPerPage={booksPerPage} totalBooks={books.length} paginate={paginate} Next={Next}/>
+                        <nav aria-label="Page navigation example">
+                            <ul className="flex list-style-none">
+                                <li className="page-item disabled"><a
+                                    className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                                    href="#" tabIndex="-1" aria-disabled="true">Previous</a></li>
+                                <li className="page-item active"><a
+                                    className="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                                    href="#">1 </a></li>
+                                <li className="page-item"><a
+                                    className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">2</a></li>
+                                <li className="page-item"><a
+                                    className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">3</a></li>
+                                <li className="page-item"><a
+                                    className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">Next</a></li>
+                            </ul>
+                        </nav>
                     </div>
         </div>
     </div>
