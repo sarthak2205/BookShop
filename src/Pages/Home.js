@@ -23,7 +23,7 @@ export default function Home() {
                 setBooks(res.data.reverse());
             });
         }
- 
+
     useEffect(() => {
         loadBooks();
     }, [currentBooks]);
