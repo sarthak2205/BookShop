@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 function View() {
@@ -20,8 +20,9 @@ function View() {
             <>
             <div className='w-full h-[500px] flex justify-center item-center align-center px-6 py-4'>
                 <div className='flex flex-col space-y-4'>
-                    <img src={"{book.cover}"} className="flex justify-center items-center"/>
-                    <h2 className='text-black font-semibold underline font-Inter text-3xl text-center'>{book.title} </h2>
+
+                    <img key={book.id} src={book.cover} className="flex justify-center items-center"/>                    
+                    <h2 className='text-black font-semibold underline font-Inter text-3xl text-center'>{book.title}</h2>
                     <h2 className='text-black font-semibold font-Inter text-2xl text-center'><p className='text-black font-bold'>Author:</p>{book.author} </h2>
                     <h2 className='text-black font-semibold font-Inter text-2xl text-center'><p className='text-black font-bold'>Year : </p>{book.year}</h2>
                     <h2 className='text-black font-semibold font-Inter text-2xl text-center'><p className='text-black font-bold'>Edition :</p> {book.edition}</h2>
