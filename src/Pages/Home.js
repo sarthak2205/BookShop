@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { Pagination } from '../Components/Pagination';
 import { Link } from 'react-router-dom';
+import { BsFillPencilFill } from 'react-icons/bs';
+import { AiFillDelete, AiFillEye } from 'react-icons/ai';
 
 export default function Home() {
     const [books, setBooks] = useState([]);
@@ -33,24 +35,28 @@ export default function Home() {
     }
 
   return (
-    <div className='w-full h-full flex flex-col px-10 py-8'>
-        <div className='w-full flex flex-col flex-min-h-50-[vh] justify-center items-center '>
+    <div className='min-h-screen bg-slate-300'>
+        <div className='flex flex-col px-10 py-8 '>
+        <div className='flex flex-col justify-center items-center '>
                 <h1 className='text-black text-3xl font-semibold '>
                     Home Page
                 </h1>
-                    <table className="w-[90%] text-center overflow-hidden overflow-y-scroll mt-8">
-                    <thead className="bg-white border-b">
+                <div className='w-full text-center'>
+                    <div className='text-center overflow-x-scroll mt-8 '>
+
+                    <table className="w-full ">
+                    <thead className="bg-gray-200 border-b">
                         <tr>
-                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        <th scope="col" className="text-sm font-bold text-gray-900 px-6 py-4 text-center">
                             id
                         </th>
-                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        <th scope="col" className="text-sm font-bold text-g   ray-900 px-6 py-4 text-center">
                             Title
                         </th>
-                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        <th scope="col" className="text-sm font-bold text-gray-900 px-6 py-4 text-center">
                             Author
                         </th>
-                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        <th scope="col" className="text-sm font-bold text-gray-900 px-6 py-4 text-center">
                             Year
                         </th>
                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -60,7 +66,7 @@ export default function Home() {
                     </thead>
                     <tbody>
                         {currentBooks.map((data, index)=>(
-                        <tr key={index} className="bg-gray-100 border-b ">
+                        <tr key={index} className="even:bg-blue-100 odd:bg-white border-b ">
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index+1}</td>
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {data.title}
@@ -71,19 +77,24 @@ export default function Home() {
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {data.year}
                             </td>
-                            <td className="flex justify-center items-center space-x-4 whitespace-nowrap">
-                                <Link to={`edit-books/${data.id}`} className="px-6 py-2 text-white bg-green-800 rounded-xl font-semibold">Edit</Link>
-                                <button onClick={()=>Delete(data.id)} className="px-6 py-2 text-white bg-red-800 rounded-xl font-semibold">Delete</button>
-                                <Link to={`books/${data.id}`} className='px-6 py-2 text-white bg-blue-800 rounded-xl font-semibold'>View</Link>
+                            <td className="flex justify-center items-center space-x-10 whitespace-nowrap py-2">
+                                <Link to={`edit-books/${data.id}`} className=" py-2 rounded-xl font-semibold"><BsFillPencilFill color='black'/></Link>
+                                <button onClick={()=>Delete(data.id)} className=" py-2 rounded-xl font-semibold"><AiFillDelete color='black' /></button>
+                                <Link to={`books/${data.id}`} className='py-2 rounded-xl font-semibold'><AiFillEye color='black' /></Link>
                             </td>
                         </tr>
                         ))}
                     </tbody>
                     </table>
+                    </div>
+                </div>
+                    
                     <div className="flex justify-center">
                         <Pagination booksPerPage={booksPerPage} totalBooks={books.length} paginate={paginate} />
                     </div>
         </div>
     </div>
+    </div>
+    
   )
 }

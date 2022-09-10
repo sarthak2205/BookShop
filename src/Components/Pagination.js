@@ -14,7 +14,7 @@ export const Pagination = ({ booksPerPage, totalBooks, paginate, currentPage }) 
         <ul className='flex list-style-none'>
           {pageNumber.map(number=>(
             <li key={number} className="page-item">
-               <a className={`page-link relative block py-1.5 px-3 rounded--lg border-0 bg-transparent outline-none transition-all duration-300 rounded-sm text-gray-800 hover:text-white hover:bg-indigo-600 focus:shadow-none ${cur === number && 'bg-indigo-600 text-white' }`} href="#" onClick={()=> {paginate(number); setCur(number)}}>
+               <a className={`page-link relative block py-1.5 px-3 rounded--lg border-0 bg-transparent outline-none transition-all duration-300 rounded-sm  hover:text-white hover:bg-indigo-600 active:text-white focus:outline-none focus:ring focus:ring-violet-300 focus:text-white ${cur === number && 'text-white bg-indigo-600 '}`} href="#" onClick={()=>{paginate(number); setCur(number)}}> 
                 {number}
               </a>
             </li>
