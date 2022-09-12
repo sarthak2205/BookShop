@@ -79,18 +79,18 @@ export default function Home() {
                             </td>
                             <td className="flex justify-center items-center space-x-5 whitespace-nowrap py-2 ">
                                 <Link to={`edit-books/${data.id}`} className=" py-2 rounded-xl font-semibold pl-5">
-                                    <div className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300'>
-                                        <BsFillPencilFill color='black'/>
+                                    <div className='icons-edit'>
+                                        <BsFillPencilFill/>
                                     </div>
                                 </Link>
                                 <button onClick={()=>Delete(data.id)} className="py-2 rounded-xl font-semibold">
-                                    <div className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300'>
-                                        <AiFillDelete color='black' />
+                                    <div className='icons-delete' >
+                                        <AiFillDelete />
                                     </div>
                                 </button>
                                 <Link to={`books/${data.id}`} className='py-2 rounded-xl font-semibold pr-5'>
-                                    <div className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  duration-300'>
-                                        <AiFillEye color='black' />
+                                    <div className='icons-view'>
+                                        <AiFillEye />
                                     </div>
                                 </Link>
                             </td>
